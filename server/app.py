@@ -16,10 +16,12 @@ def create_app():
     migrate.init_app(app, db)
     jwt.init_app(app)
 
+   
     with app.app_context():
         from server.models import User, Guest, Episode, Appearance
 
-
- 
+    
+    from server.controllers.auth_controller import auth_bp
+    app.register_blueprint(auth_bp)
 
     return app
